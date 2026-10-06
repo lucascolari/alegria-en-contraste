@@ -14,20 +14,15 @@
 <main>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-text">
-      <p class="eyebrow"><span class="eyebrow-line"></span>Diseño contemporáneo</p>
-      <h1>Diseño<br>que se lleva<br>puesto<span class="dot">.</span></h1>
-      <p class="hero-lead">Aros creados a través de impresión 3D,<br>plata y materiales naturales.</p>
-      <a class="btn btn-dark" href="colecciones.html">Ver colección <span class="arrow">&rarr;</span></a>
-    </div>
+  <section class="hero" id="hero">
+    <div class="hero-text" id="hero-text"></div>
     <div class="hero-media">
-      <img class="ph ph-hero" src="images/hero.jpg" alt="Modelo con aros de diseño">
+      <img class="ph ph-hero" id="hero-img" src="images/hero.jpg" alt="Modelo con aros de diseño">
       <div class="hero-counter">
-        <span class="count">01 / 03</span>
+        <span class="count" id="hero-count">01 / 03</span>
         <div class="hero-arrows">
-          <button class="icon-btn" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="20" y1="12" x2="5" y2="12"/><polyline points="11 6 5 12 11 18"/></svg></button>
-          <button class="icon-btn" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg></button>
+          <button class="icon-btn" id="hero-prev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="20" y1="12" x2="5" y2="12"/><polyline points="11 6 5 12 11 18"/></svg></button>
+          <button class="icon-btn" id="hero-next" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg></button>
         </div>
       </div>
     </div>
@@ -160,5 +155,68 @@
 <footer class="site-footer" id="site-footer"></footer>
 
 <script src="site.js"></script>
+<script>
+(function () {
+  const slides = [
+    {
+      eyebrow: 'Diseño contemporáneo',
+      title: 'Diseño<br>que se lleva<br>puesto<span class="dot">.</span>',
+      lead: 'Aros creados a través de impresión 3D,<br>plata y materiales naturales.',
+      img: 'images/hero.jpg',
+      alt: 'Modelo con aros rosas de diseño',
+      cta: 'colecciones.html',
+    },
+    {
+      eyebrow: 'Hecho a mano',
+      title: 'Piezas<br>que son<br>únicas<span class="dot">.</span>',
+      lead: 'Cada par se termina a mano con plata,<br>piedras y perlas naturales.',
+      img: 'images/violeta.jpg',
+      alt: 'Aro violeta con perla sobre piedra',
+      cta: 'aros.html',
+    },
+    {
+      eyebrow: 'Color y forma',
+      title: 'Animate<br>al contraste<span class="dot">.</span>',
+      lead: 'Formas imposibles y colores<br>que no pasan desapercibidos.',
+      img: 'images/esencia.jpg',
+      alt: 'Modelo con aro de diseño',
+      cta: 'aros.html',
+    },
+  ];
+  let i = 0, timer;
+  const hero = document.getElementById('hero');
+  const text = document.getElementById('hero-text');
+  const img = document.getElementById('hero-img');
+  const count = document.getElementById('hero-count');
+  const pad = (n) => (n < 10 ? '0' + n : '' + n);
+
+  function render() {
+    const s = slides[i];
+    text.innerHTML =
+      `<p class="eyebrow"><span class="eyebrow-line"></span>${s.eyebrow}</p>` +
+      `<h1>${s.title}</h1>` +
+      `<p class="hero-lead">${s.lead}</p>` +
+      `<a class="btn btn-dark" href="${s.cta}">Ver colección <span class="arrow">&rarr;</span></a>`;
+    img.src = s.img;
+    img.alt = s.alt;
+    count.textContent = pad(i + 1) + ' / ' + pad(slides.length);
+  }
+  function go(n, manual) {
+    i = (n + slides.length) % slides.length;
+    hero.classList.add('is-fading');
+    setTimeout(() => { render(); hero.classList.remove('is-fading'); }, 280);
+    if (manual) restart();
+  }
+  function restart() { clearInterval(timer); timer = setInterval(() => go(i + 1), 6000); }
+
+  document.getElementById('hero-prev').addEventListener('click', () => go(i - 1, true));
+  document.getElementById('hero-next').addEventListener('click', () => go(i + 1, true));
+  hero.addEventListener('mouseenter', () => clearInterval(timer));
+  hero.addEventListener('mouseleave', restart);
+
+  render();
+  restart();
+})();
+</script>
 </body>
 </html>
