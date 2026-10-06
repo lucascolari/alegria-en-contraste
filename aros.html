@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aros — Alegría en Contraste</title>
+<meta name="description" content="Todos los aros de Alegría en Contraste: geométricos, orgánicos, de color y con piedras.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="aros.html">
+
+<header class="site-header" id="site-header"></header>
+
+<main>
+  <section class="page-head shell">
+    <p class="eyebrow"><span class="eyebrow-line"></span>Tienda</p>
+    <h1>Todos los aros<span class="dot">.</span></h1>
+    <p class="muted">Cada par se diseña en 3D y se termina a mano con plata, piedras y perlas. Elegí por forma o mirá la colección completa.</p>
+    <div class="filtros" id="filtros"></div>
+  </section>
+
+  <section class="shell catalogo-wrap">
+    <div class="catalogo-grid" id="catalogo"></div>
+  </section>
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="site.js"></script>
+<script>
+  function pintarCatalogo(cat) {
+    const cont = document.getElementById('catalogo');
+    const items = CATALOGO.filter((p) => cat === 'todos' || p.cat === cat);
+    cont.innerHTML = items.map((p) => `
+      <article class="product">
+        <img class="ph ph-product" src="${p.img}" alt="Aros ${p.nombre}">
+        <div class="product-row">
+          <div>
+            <h3>${p.nombre}</h3>
+            <p class="price">${peso(p.precio)}</p>
+          </div>
+          <button class="add-btn" data-add="${p.id}" aria-label="Agregar ${p.nombre}">+</button>
+        </div>
+        <p class="product-desc muted">${p.desc}</p>
+      </article>`).join('');
+    cont.querySelectorAll('[data-add]').forEach((b) =>
+      b.addEventListener('click', () => agregarAlCarrito(b.dataset.add)));
+  }
+
+  function pintarFiltros(activa) {
+    const cont = document.getElementById('filtros');
+    const chips = [['todos', 'Todos'], ...Object.entries(CATEGORIAS)];
+    cont.innerHTML = chips.map(([k, t]) =>
+      `<button class="chip${k === activa ? ' chip-activo' : ''}" data-cat="${k}">${t}</button>`).join('');
+    cont.querySelectorAll('.chip').forEach((c) =>
+      c.addEventListener('click', () => {
+        const cat = c.dataset.cat;
+        history.replaceState(null, '', cat === 'todos' ? 'aros.html' : 'aros.html?cat=' + cat);
+        pintarFiltros(cat);
+        pintarCatalogo(cat);
+      }));
+  }
+
+  const inicial = new URLSearchParams(location.search).get('cat');
+  const cat = (inicial && CATEGORIAS[inicial]) ? inicial : 'todos';
+  pintarFiltros(cat);
+  pintarCatalogo(cat);
+</script>
+</body>
+</html>

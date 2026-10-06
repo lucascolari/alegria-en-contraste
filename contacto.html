@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contacto — Alegría en Contraste</title>
+<meta name="description" content="Escribinos. Envíos a todo el país, medios de pago y atención por WhatsApp e Instagram.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="contacto.html">
+
+<header class="site-header" id="site-header"></header>
+
+<main>
+  <section class="page-head shell">
+    <p class="eyebrow"><span class="eyebrow-line"></span>Contacto</p>
+    <h1>Hablemos<span class="dot">.</span></h1>
+    <p class="muted">¿Tenés una duda, querés un pedido especial o buscás el par ideal? Escribinos y te respondemos a la brevedad.</p>
+  </section>
+
+  <section class="shell contacto-wrap">
+    <form class="contacto-form" id="form-contacto">
+      <div class="campo">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" name="nombre" type="text" required placeholder="Tu nombre">
+      </div>
+      <div class="campo">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required placeholder="tunombre@email.com">
+      </div>
+      <div class="campo">
+        <label for="asunto">Asunto</label>
+        <select id="asunto" name="asunto">
+          <option>Consulta general</option>
+          <option>Estado de mi pedido</option>
+          <option>Pedido personalizado</option>
+          <option>Venta mayorista</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Contanos en qué te podemos ayudar"></textarea>
+      </div>
+      <button class="btn btn-dark" type="submit">Enviar mensaje <span class="arrow">&rarr;</span></button>
+    </form>
+
+    <aside class="contacto-info">
+      <div class="info-bloque">
+        <h4>Escribinos</h4>
+        <p>hola@alegriaencontraste.com</p>
+        <p>WhatsApp: +54 9 11 5555-2043</p>
+      </div>
+      <div class="info-bloque">
+        <h4>Taller y showroom</h4>
+        <p>Thames 1820, Palermo<br>Ciudad de Buenos Aires</p>
+        <p class="muted">Visitas con cita previa</p>
+      </div>
+      <div class="info-bloque">
+        <h4>Horarios</h4>
+        <p>Lunes a viernes de 10 a 18 h<br>Sábados de 10 a 14 h</p>
+      </div>
+      <div class="info-bloque">
+        <h4>Seguinos</h4>
+        <p>Instagram · TikTok · Pinterest</p>
+      </div>
+    </aside>
+  </section>
+
+  <section class="faq shell">
+    <p class="eyebrow"><span class="eyebrow-line"></span>Preguntas frecuentes</p>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h4>¿Hacen envíos a todo el país?</h4>
+        <p class="muted">Sí. Enviamos a toda la Argentina por correo y a domicilio. El costo se calcula según el destino al finalizar la compra.</p>
+      </div>
+      <div class="faq-item">
+        <h4>¿Qué medios de pago aceptan?</h4>
+        <p class="muted">Transferencia bancaria, tarjeta de crédito y débito, y MODO con QR. Pronto más opciones.</p>
+      </div>
+      <div class="faq-item">
+        <h4>¿Puedo cambiar o devolver un aro?</h4>
+        <p class="muted">Tenés 10 días desde que recibís el pedido para solicitar un cambio. Escribinos y te guiamos en el proceso.</p>
+      </div>
+      <div class="faq-item">
+        <h4>¿Hacen piezas personalizadas?</h4>
+        <p class="muted">Sí. Trabajamos pedidos especiales y venta mayorista. Contanos tu idea y la hacemos realidad.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="news-band">
+    <div class="shell news-inner">
+      <div>
+        <h2>Sumate a la lista<span class="dot">.</span></h2>
+        <p class="muted">Enterate de los lanzamientos y promos antes que nadie.</p>
+      </div>
+      <form class="news-form" id="form-news">
+        <input type="email" name="email" required placeholder="Tu email">
+        <button class="btn btn-dark" type="submit">Suscribirme</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="site.js"></script>
+</body>
+</html>
